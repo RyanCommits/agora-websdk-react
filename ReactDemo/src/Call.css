@@ -11,7 +11,31 @@
   padding: 20px;
 }
 
+.main-player {
+  display: flex;
+  justify-content: center;
+}
 
+.preview-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 350px;
+  background-color: black;
+}
+
+.preview-text {
+  color: white;
+}
+
+.local-player-wrapper {
+  display: flex;
+}
+
+.remote-player-wrapper {
+  padding-left: 15px;
+}
 
 .call-form {
   padding: 20px;

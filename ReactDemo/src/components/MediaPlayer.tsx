@@ -3,7 +3,8 @@ import React, { useRef, useEffect } from "react";
 
 export interface VideoPlayerProps {
   videoTrack: ILocalVideoTrack | IRemoteVideoTrack | undefined;
-  audioTrack: ILocalAudioTrack | IRemoteAudioTrack | undefined;
+  audioTrack?: ILocalAudioTrack | IRemoteAudioTrack | undefined;
+  mainPlayer?: boolean;
 }
 
 const MediaPlayer = (props: VideoPlayerProps) => {
@@ -22,7 +23,7 @@ const MediaPlayer = (props: VideoPlayerProps) => {
     };
   }, [props.audioTrack]);
   return (
-    <div ref={container}  className="video-player" style={{ width: "320px", height: "240px"}}></div>
+    <div ref={container}  className="video-player" style={props.mainPlayer ? { width: "200px", height: "350px" }:{ width: "320px", height: "240px"}}></div>
   );
 }
 

@@ -64,6 +64,30 @@ $("#leave").click(function (e) {
   leave();
 })
 
+$("#inject").click(function (e) {
+  inject();
+})
+
+async function inject() {
+  console.log('injecting');
+  const injectStreamConfig = {
+    width: 0,
+    height: 0,
+    videoGop: 30,
+    videoFramerate: 15,
+    videoBitrate: 400,
+    audioSampleRate: 44100,
+    audioChannels: 1,
+  };  
+
+  try {
+    await client.addInjectStreamUrl("https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4", injectStreamConfig);
+    console.log('success');
+  } catch (e) {
+    console.log('error injecting', e);
+  }
+}
+
 async function join() {
   // create Agora client
   client = AgoraRTC.createClient({ mode: "live", codec: "h264", role: options.role });
@@ -75,7 +99,7 @@ async function join() {
   }
 
   // join the channel
-  options.uid = await client.join(options.appid, options.channel, options.token || null);
+  options.uid = await client.join(options.appid, options.channel, options.token || null, "student");
 
   if (options.role === "host") {
     // create local audio and video tracks
